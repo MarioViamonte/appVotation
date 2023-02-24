@@ -15,6 +15,10 @@ func main(){
     e.Use(middleware.Logger())
     e.Use(middleware.Recover())
 
+    //Inicialização do DB
+    db := initDB("storage.db")
+    migrate(db)
+    
     //definindo as rotas HTTP
     e.GET("/polls", func(c echo.Context) error{
         return c.JSON(200, "PUT Polls")
